@@ -1,41 +1,42 @@
-const gameBoard = (() => {
-  let state = {};
+// GAMEBOARD
 
-  const placeMarker = function (boardIndex, marker, name) {
-    if (gameBoard.state[boardIndex]) return;
-    gameBoard.state[boardIndex] = marker;
-    console.log(`${name} places ${marker} in [${boardIndex}]`);
+const gameBoard = (() => {
+  const state = {};
+  const htmlElement = document.querySelector(".game-board");
+
+  const placeMarker = function (boardPosition, marker) {
+    const boardIndex = boardPosition.dataset.boardIndex;
+    if (state[boardIndex]) return;
+    state[boardIndex] = marker;
+    boardPosition.textContent = `${marker}`;
+    boardPosition.classList.remove("empty");
+    boardPosition.classList.add("full");
   };
 
-  return { state, placeMarker };
+  return { state, htmlElement, placeMarker };
 })();
 
+// PLAYERS
+
 const Player = (name, marker) => {
-  const play = (boardIndex, marker) =>
-    gameBoard.placeMarker(boardIndex, marker, name);
+  const play = (boardPosition, marker) =>
+    gameBoard.placeMarker(boardPosition, marker);
   return { name, marker, play };
 };
 
 const player1 = Player("player1", "X");
 const player2 = Player("player2", "O");
 
-const playRound = function (state, activePlayer) {
-  const boardIndex = prompt(
-    `${activePlayer.name} next move? \n[1][2][3]\n[4][5][6]\n[7][8][9]`
-  );
-  activePlayer.play(boardIndex, activePlayer.marker);
-
-  console.log(state);
-};
+// GAME
 
 const runGame = (function () {
   let activePlayer = player1;
-
-  for (let round = 1; round < 10; round++) {
-    console.log(`ROUND ${round}`);
-    playRound(gameBoard.state, activePlayer);
+  gameBoard.htmlElement.addEventListener("click", function (e) {
+    const boardPosition = e.target;
+    activePlayer.play(boardPosition, activePlayer.marker);
+    console.log(gameBoard.state);
     activePlayer === player1
       ? (activePlayer = player2)
       : (activePlayer = player1);
-  }
+  });
 })();
