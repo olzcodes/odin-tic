@@ -33,6 +33,7 @@ const runGame = (function () {
   let activePlayer = player1;
   gameBoard.htmlElement.addEventListener("click", function (e) {
     const boardPosition = e.target;
+    if (boardPosition.textContent) return;
     activePlayer.play(boardPosition, activePlayer.marker);
     console.log(gameBoard.state);
     activePlayer === player1
