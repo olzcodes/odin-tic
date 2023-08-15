@@ -1,7 +1,7 @@
 // GAMEBOARD
 
 const gameBoard = (() => {
-  const state = {};
+  let state = [];
   const htmlElement = document.querySelector(".game-board");
 
   const placeMarker = function (boardPosition, marker) {
