@@ -28,8 +28,7 @@ const gameBoard = (() => {
 // PLAYERS
 
 const Player = (name, marker) => {
-  const play = (boardPosition, marker) =>
-    gameBoard.placeMarker(boardPosition, marker);
+  const play = (boardPosition) => gameBoard.placeMarker(boardPosition, marker);
   return { name, marker, play };
 };
 
@@ -43,7 +42,7 @@ const runGame = (function () {
   gameBoard.htmlElement.addEventListener("click", function (e) {
     const boardPosition = e.target;
     if (boardPosition.textContent) return;
-    activePlayer.play(boardPosition, activePlayer.marker);
+    activePlayer.play(boardPosition);
     checkForWin(winningPatterns, gameBoard.state);
     activePlayer === player1
       ? (activePlayer = player2)
