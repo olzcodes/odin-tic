@@ -45,13 +45,9 @@ const gameController = (function () {
 
   const playRound = function (boardIndex) {
     if (gameActive === false) return;
-
     activePlayer.play(boardIndex);
-
     gameBoard.printBoard();
-
     checkForWin(gameBoard.board);
-
     switchPlayerTurn();
   };
 
