@@ -52,9 +52,11 @@ const gameController = (function () {
 
     checkForWin(gameBoard.board);
 
-    activePlayer === player1
-      ? (activePlayer = player2)
-      : (activePlayer = player1);
+    switchPlayerTurn();
+  };
+
+  const switchPlayerTurn = () => {
+    activePlayer = activePlayer === player1 ? player2 : player1;
   };
 
   const checkForWin = function (board) {
