@@ -6,7 +6,6 @@ const gameBoard = (() => {
   const placeMarker = function (boardIndex, marker) {
     if (board[boardIndex]) return;
     board[boardIndex] = marker;
-    return board;
   };
 
   const printBoard = () => {
