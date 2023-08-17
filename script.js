@@ -40,14 +40,18 @@ const gameController = (function () {
   ];
 
   let gameActive = true;
+  let round = 1;
   let activePlayer = player1;
+  let winner = "";
 
   const playRound = function (boardIndex) {
     if (gameActive === false) return;
     activePlayer.play(boardIndex);
     gameBoard.printBoard();
     checkForWin(gameBoard.board);
+    checkForDraw();
     switchPlayerTurn();
+    round++;
   };
 
   const switchPlayerTurn = () => {
@@ -64,7 +68,15 @@ const gameController = (function () {
     }
   };
 
+  const checkForDraw = function () {
+    if (round === 9 && winner === "") {
+      gameActive = false;
+      console.log(`DRAW`);
+    }
+  };
+
   const endGame = function (pattern, player) {
+    winner = player;
     gameActive = false;
     console.log(`${player.name} WINS!`);
     displayController.showWinner(pattern, player);
