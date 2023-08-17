@@ -72,6 +72,7 @@ const gameController = (function () {
     if (round === 9 && winner === "") {
       gameActive = false;
       console.log(`DRAW`);
+      displayController.showMessage(`DRAW`);
     }
   };
 
@@ -79,7 +80,8 @@ const gameController = (function () {
     winner = player;
     gameActive = false;
     console.log(`${player.name} WINS!`);
-    displayController.showWinner(pattern, player);
+    displayController.showWinningPattern(pattern);
+    displayController.showMessage(`${player.name} WINS! 🏆`);
   };
 
   return { playRound, winningPatterns };
@@ -113,13 +115,16 @@ const displayController = (function () {
     }
   };
 
-  const showWinner = function (pattern, player) {
+  const showWinningPattern = function (pattern) {
     gameController.winningPatterns[pattern].map((boardIndex) => {
       gameBoardEl.children[boardIndex - 1].classList.add("win");
-      messageDisplayEl.textContent = `${player.name} WINS! 🏆`;
-      messageDisplayEl.classList.remove("off");
     });
   };
 
-  return { showWinner };
+  const showMessage = function (message) {
+    messageDisplayEl.textContent = `${message}`;
+    messageDisplayEl.classList.remove("off");
+  };
+
+  return { showWinningPattern, showMessage };
 })();
