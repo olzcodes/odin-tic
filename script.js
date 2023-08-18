@@ -8,7 +8,7 @@ const gameBoard = (() => {
     board[boardIndex] = marker;
   };
 
-  const printBoard = () => {
+  const printBoard = function () {
     console.log(board);
   };
 
@@ -18,7 +18,9 @@ const gameBoard = (() => {
 // PLAYERS
 
 const Player = (name, marker) => {
-  const play = (boardIndex) => gameBoard.placeMarker(boardIndex, marker);
+  const play = function (boardIndex) {
+    gameBoard.placeMarker(boardIndex, marker);
+  };
   return { name, marker, play };
 };
 
@@ -27,7 +29,7 @@ const player2 = Player("player2", "O");
 
 // GAME
 
-const gameController = (function () {
+const gameController = (() => {
   const winningPatterns = [
     [1, 2, 3],
     [4, 5, 6],
@@ -54,7 +56,7 @@ const gameController = (function () {
     round++;
   };
 
-  const switchPlayerTurn = () => {
+  const switchPlayerTurn = function () {
     activePlayer = activePlayer === player1 ? player2 : player1;
   };
 
@@ -89,7 +91,7 @@ const gameController = (function () {
 
 // DISPLAY /////////////////////////////////////////////////////////////////
 
-const displayController = (function () {
+const displayController = (() => {
   const gameBoardEl = document.querySelector(".game-board");
   const messageDisplayEl = document.querySelector(".message-display");
 
