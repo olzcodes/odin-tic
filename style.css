@@ -64,10 +64,30 @@ header {
   padding: 10px;
 }
 
-.select-mark {
+.players {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50%;
+}
+
+.player1,
+.player2 {
+  padding: 8px;
+  border: 2px solid var(--accent-color);
+  border-radius: 10px;
+  width: 92%;
+  text-align: center;
+  margin: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .marker {
