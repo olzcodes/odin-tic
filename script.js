@@ -17,15 +17,32 @@ const gameBoard = (() => {
 
 // PLAYERS
 
-const Player = (name, marker) => {
-  const play = function (boardIndex) {
-    gameBoard.placeMarker(boardIndex, marker);
-  };
-  return { name, marker, play };
-};
+const players = (() => {
+  const nameInputs = document.querySelectorAll(".input-name");
+  const nameInputPlayer1 = document.querySelector(`.name-player1`);
+  const nameInputPlayer2 = document.querySelector(`.name-player2`);
 
-const player1 = Player("player1", "X");
-const player2 = Player("player2", "O");
+  const Player = (name, marker) => {
+    const play = function (boardIndex) {
+      gameBoard.placeMarker(boardIndex, marker);
+    };
+    return { name, marker, play };
+  };
+
+  let player1 = Player("player1", "X");
+  let player2 = Player("player2", "O");
+
+  const updatePlayerNames = function () {
+    player1.name = nameInputPlayer1.value;
+    player2.name = nameInputPlayer2.value;
+  };
+
+  nameInputs.forEach((element) => {
+    element.addEventListener("focusout", updatePlayerNames);
+  });
+
+  return { player1, player2 };
+})();
 
 // GAME
 
@@ -43,6 +60,7 @@ const gameController = (() => {
 
   let gameActive = true;
   let round = 1;
+  let { player1, player2 } = players;
   let activePlayer = player1;
   let winner = "";
 
