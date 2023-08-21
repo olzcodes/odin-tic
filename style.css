@@ -77,17 +77,24 @@ header {
   width: 50%;
 }
 
-.player1,
-.player2 {
+.input-name {
   padding: 8px;
   border: 2px solid var(--accent-color);
   border-radius: 10px;
+  outline: none;
   width: 92%;
+  color: var(--accent-color);
+  background-color: var(--background-color-light);
+  font-size: large;
   text-align: center;
   margin: 10px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.input-name::placeholder {
+  color: var(--accent-color-60);
 }
 
 .marker {
