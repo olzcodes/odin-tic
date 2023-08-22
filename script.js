@@ -88,20 +88,20 @@ const gameController = (() => {
     }
   };
 
-  const checkForDraw = function () {
-    if (round === 9 && winner === "") {
-      gameActive = false;
-      console.log(`DRAW`);
-      displayController.showMessage(`DRAW`);
-    }
-  };
-
   const endGame = function (pattern, player) {
     winner = player;
     gameActive = false;
     console.log(`${player.name} WINS!`);
     displayController.showWinningPattern(pattern);
     displayController.showMessage(`${player.name} WINS! 🏆`);
+  };
+
+  const checkForDraw = function () {
+    if (round === 9 && winner === "") {
+      gameActive = false;
+      console.log(`DRAW`);
+      displayController.showMessage(`DRAW`);
+    }
   };
 
   return { playRound, winningPatterns };
