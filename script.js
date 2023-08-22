@@ -55,6 +55,12 @@ const players = (() => {
 // GAME
 
 const gameController = (() => {
+  let { player1, player2 } = players;
+  let gameActive;
+  let round;
+  let activePlayer;
+  let winner;
+
   const winningPatterns = [
     [1, 2, 3],
     [4, 5, 6],
@@ -66,11 +72,14 @@ const gameController = (() => {
     [3, 5, 7],
   ];
 
-  let gameActive = true;
-  let round = 1;
-  let { player1, player2 } = players;
-  let activePlayer = player1;
-  let winner = "";
+  const initializeVariables = function () {
+    gameActive = true;
+    round = 1;
+    activePlayer = player1;
+    winner = "";
+  };
+
+  initializeVariables();
 
   const playRound = function (boardIndex) {
     if (gameActive === false) return;
@@ -116,10 +125,7 @@ const gameController = (() => {
   const restartGame = function () {
     gameBoard.resetBoard();
     gameBoard.printBoard();
-    gameActive = true;
-    round = 1;
-    activePlayer = player1;
-    winner = "";
+    initializeVariables();
     displayController.showActivePlayer(activePlayer);
   };
 
