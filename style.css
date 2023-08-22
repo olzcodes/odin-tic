@@ -191,3 +191,11 @@ footer a {
 footer a:hover {
   color: var(--accent-color-60);
 }
+
+/* For larger screens */
+@media only screen and (min-width: 600px) {
+  .game-cell {
+    height: 18vmin;
+    width: 18vmin;
+  }
+}
