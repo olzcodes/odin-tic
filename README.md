@@ -8,8 +8,8 @@ https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
 
 ## Screenshots
 
-.
+![screenshot showing a game won by player1](./screenshots/screenshot-1.png)
 
 ## What I learned from this project
 
-.
+- How to use factory functions and the module pattern to organise code.
