@@ -84,6 +84,7 @@ const gameController = (() => {
 
   const switchPlayerTurn = function () {
     activePlayer = activePlayer === player1 ? player2 : player1;
+    displayController.showActivePlayer(activePlayer);
   };
 
   const checkForWin = function (board) {
@@ -119,6 +120,7 @@ const gameController = (() => {
     round = 1;
     activePlayer = player1;
     winner = "";
+    displayController.showActivePlayer(activePlayer);
   };
 
   const gameStatusActive = function () {
@@ -131,10 +133,12 @@ const gameController = (() => {
 // DISPLAY /////////////////////////////////////////////////////////////////
 
 const displayController = (() => {
-  const gameBoardEl = document.querySelector(".game-board");
-  const messageDisplayEl = document.querySelector(".message-display");
+  const player1MarkerEl = document.querySelector(".x");
+  const player2MarkerEl = document.querySelector(".o");
   const btnRestartEl = document.querySelector(".btn-restart");
   const iconRestartEl = document.querySelector(".icon-restart");
+  const messageDisplayEl = document.querySelector(".message-display");
+  const gameBoardEl = document.querySelector(".game-board");
 
   const clickHandlerBoard = function (e) {
     const clickTarget = e.target;
@@ -146,6 +150,24 @@ const displayController = (() => {
   };
 
   gameBoardEl.addEventListener("click", clickHandlerBoard);
+
+  const showActivePlayer = function (player) {
+    if (!gameController.gameStatusActive()) {
+      player1MarkerEl.classList.remove("active");
+      player2MarkerEl.classList.remove("active");
+      return;
+    }
+    if (player === players.player1) {
+      player1MarkerEl.classList.add("active");
+      player2MarkerEl.classList.remove("active");
+    }
+    if (player === players.player2) {
+      player1MarkerEl.classList.remove("active");
+      player2MarkerEl.classList.add("active");
+    }
+  };
+
+  // showActivePlayer(players.player1);
 
   const updateDisplay = function () {
     const board = gameBoard.getBoard();
@@ -193,5 +215,5 @@ const displayController = (() => {
 
   btnRestartEl.addEventListener("click", clickHandlerRestart);
 
-  return { showWinningPattern, showMessage };
+  return { showActivePlayer, showWinningPattern, showMessage };
 })();
