@@ -139,6 +139,7 @@ const displayController = (() => {
   const clickHandlerBoard = function (e) {
     const clickTarget = e.target;
     const boardIndex = clickTarget.dataset.boardIndex;
+    if (!clickTarget.classList.contains("game-cell")) return;
     if (clickTarget.classList.contains("full")) return;
     gameController.playRound(boardIndex);
     updateDisplay();
