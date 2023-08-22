@@ -12,7 +12,15 @@ const gameBoard = (() => {
     console.log(board);
   };
 
-  return { board, placeMarker, printBoard };
+  const getBoard = function () {
+    return board;
+  };
+
+  const resetBoard = function () {
+    board = [];
+  };
+
+  return { board, placeMarker, printBoard, getBoard, resetBoard };
 })();
 
 // PLAYERS
@@ -68,7 +76,7 @@ const gameController = (() => {
     if (gameActive === false) return;
     activePlayer.play(boardIndex);
     gameBoard.printBoard();
-    checkForWin(gameBoard.board);
+    checkForWin(gameBoard.getBoard());
     checkForDraw();
     switchPlayerTurn();
     round++;
@@ -104,7 +112,20 @@ const gameController = (() => {
     }
   };
 
-  return { playRound, winningPatterns };
+  const restartGame = function () {
+    gameBoard.resetBoard();
+    gameBoard.printBoard();
+    gameActive = true;
+    round = 1;
+    activePlayer = player1;
+    winner = "";
+  };
+
+  const gameStatusActive = function () {
+    return gameActive;
+  };
+
+  return { playRound, winningPatterns, restartGame, gameStatusActive };
 })();
 
 // DISPLAY /////////////////////////////////////////////////////////////////
@@ -112,6 +133,8 @@ const gameController = (() => {
 const displayController = (() => {
   const gameBoardEl = document.querySelector(".game-board");
   const messageDisplayEl = document.querySelector(".message-display");
+  const btnRestartEl = document.querySelector(".btn-restart");
+  const iconRestartEl = document.querySelector(".icon-restart");
 
   const clickHandlerBoard = function (e) {
     const clickTarget = e.target;
@@ -124,13 +147,17 @@ const displayController = (() => {
   gameBoardEl.addEventListener("click", clickHandlerBoard);
 
   const updateDisplay = function () {
+    const board = gameBoard.getBoard();
     for (let boardIndex = 0; boardIndex < 9; boardIndex++) {
       const cell = gameBoardEl.children[boardIndex];
-      const marker = gameBoard.board[boardIndex];
+      const marker = board[boardIndex];
       cell.textContent = marker;
       if (cell.textContent) {
         cell.classList.remove("empty");
         cell.classList.add("full");
+      } else {
+        cell.classList.add("empty");
+        cell.classList.remove("full");
       }
     }
   };
@@ -141,10 +168,29 @@ const displayController = (() => {
     });
   };
 
+  const clearWinningPattern = function () {
+    for (let child of gameBoardEl.children) {
+      child.classList.remove("win");
+    }
+  };
+
   const showMessage = function (message) {
     messageDisplayEl.textContent = `${message}`;
     messageDisplayEl.classList.remove("off");
+    iconRestartEl.classList.remove("off");
   };
+
+  const clickHandlerRestart = function () {
+    if (gameController.gameStatusActive() === true) return;
+    gameController.restartGame();
+    updateDisplay();
+    clearWinningPattern();
+    messageDisplayEl.textContent = "";
+    messageDisplayEl.classList.add("off");
+    iconRestartEl.classList.add("off");
+  };
+
+  btnRestartEl.addEventListener("click", clickHandlerRestart);
 
   return { showWinningPattern, showMessage };
 })();
