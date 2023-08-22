@@ -167,8 +167,6 @@ const displayController = (() => {
     }
   };
 
-  // showActivePlayer(players.player1);
-
   const updateDisplay = function () {
     const board = gameBoard.getBoard();
     for (let boardIndex = 0; boardIndex < 9; boardIndex++) {
