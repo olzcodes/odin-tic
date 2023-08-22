@@ -104,6 +104,13 @@ header {
   font-size: xx-large;
 }
 
+.marker.active {
+  color: springgreen;
+  text-shadow: 0 0 4px #00ff28, 0 0 8px #00ffff;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: springgreen;
+}
+
 main {
   flex: 1;
 
@@ -165,7 +172,7 @@ main {
 }
 
 .game-cell.empty:hover {
-  border: 2px dashed var(--main-color);
+  border: 3px dashed var(--main-color);
 }
 
 .full {
@@ -174,7 +181,10 @@ main {
 }
 
 .win {
-  border: 4px solid var(--main-color);
+  border: 3px solid var(--main-color);
+  text-shadow: 0 0 4px #00ff28, 0 0 8px #00ffff;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: springgreen;
 }
 
 footer {
