@@ -1,5 +1,3 @@
-// GAMEBOARD
-
 const gameBoard = (() => {
   let board = [];
 
@@ -22,8 +20,6 @@ const gameBoard = (() => {
 
   return { board, placeMarker, printBoard, getBoard, resetBoard };
 })();
-
-// PLAYERS
 
 const players = (() => {
   const nameInputs = document.querySelectorAll(".input-name");
@@ -51,8 +47,6 @@ const players = (() => {
 
   return { player1, player2 };
 })();
-
-// GAME
 
 const gameController = (() => {
   let { player1, player2 } = players;
@@ -135,8 +129,6 @@ const gameController = (() => {
 
   return { playRound, winningPatterns, restartGame, gameStatusActive };
 })();
-
-// DISPLAY /////////////////////////////////////////////////////////////////
 
 const displayController = (() => {
   const player1MarkerEl = document.querySelector(".x");
