@@ -134,12 +134,18 @@ main {
   background-color: var(--background-color-dark);
 }
 
+.container-restart {
+  display: flex;
+  justify-content: center;
+  height: 20vh;
+}
+
 .btn-restart {
   width: 4em;
   background-color: var(--background-color-dark);
   border: none;
   align-self: center;
-  margin: 20px 0px 20px;
+  margin: 40px 0px 30px;
 }
 
 .icon-restart {
