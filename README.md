@@ -13,3 +13,4 @@ https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
 ## What I learned from this project
 
 - How to use factory functions and the module pattern to organise code.
+- The importance of Separation of Concerns and how it helps manage complexity.
