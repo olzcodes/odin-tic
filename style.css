@@ -166,9 +166,10 @@ main {
   font-size: 5em;
   height: 25vmin;
   width: 25vmin;
-  border: 1px solid var(--background-color-light);
+  background-color: var(--background-color-light);
   border-radius: 1rem;
   padding: 10px;
+  margin: 1px;
 }
 
 .game-cell.empty:hover {
