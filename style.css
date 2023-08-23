@@ -176,11 +176,6 @@ main {
   border: 3px dashed var(--main-color);
 }
 
-.full {
-  background-color: var(--background-color-light);
-  border: 1px solid var(--background-color-dark);
-}
-
 .win {
   border: 3px solid var(--main-color);
   text-shadow: 0 0 4px #00ff28, 0 0 8px #00ffff;
