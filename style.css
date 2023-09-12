@@ -2,19 +2,10 @@
 
 :root {
   --springgreen: springgreen;
-  --springgreen-60: rgba(0, 255, 128, 0.6);
-  --chartreuse: chartreuse;
-  --chartreuse-60: rgba(128, 255, 0, 0.6);
   --darkslategray: darkslategray;
-  --black: black;
   --darkcyan: darkcyan;
   --cyan: cyan;
   --cyan-60: rgba(0, 255, 255, 0.6);
-  --aquamarine: aquamarine;
-  --aquamarine-60: rgb(127, 255, 212, 0.6);
-  --gold: gold;
-  --gold-60: rgba(255, 217, 0, 0.6);
-  --silver: silver;
 }
 
 :root.default-theme {
@@ -23,8 +14,6 @@
   --background-color-light: var(--darkcyan);
   --accent-color: var(--cyan);
   --accent-color-60: var(--cyan-60);
-  --main-color-60: var(--springgreen-60);
-  --inactive-color: var(--silver);
 }
 
 html {
