@@ -37,8 +37,8 @@ const players = (() => {
   let player2 = Player("player2", "O");
 
   const updatePlayerNames = function () {
-    player1.name = nameInputPlayer1.value;
-    player2.name = nameInputPlayer2.value;
+    player1.name = nameInputPlayer1.value || "player1";
+    player2.name = nameInputPlayer2.value || "player2";
   };
 
   nameInputs.forEach((element) => {
